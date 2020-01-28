@@ -1,7 +1,7 @@
 import sys
 import traceback
 
-import commands
+from . import commands
 
 
 class MerchantsGuideToGalaxy:

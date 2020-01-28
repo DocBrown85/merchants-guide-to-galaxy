@@ -1,6 +1,6 @@
 from .ICommand import ICommand
 
-import translators
+from .. import translators
 
 
 class CommandTranslateUnitsOfGoodWorth(ICommand):
