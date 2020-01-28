@@ -32,7 +32,9 @@ class CommandTranslateUnitsOfGoodWorth(ICommand):
         )
 
         response = "{} {} is {:0.0f} Credits".format(
-            " ".join(self._intergalacticUnits), self._goodName, translatedGoodWorth
+            " ".join(self._intergalacticUnits),
+            self._goodName.capitalize(),
+            translatedGoodWorth,
         )
 
         return response
