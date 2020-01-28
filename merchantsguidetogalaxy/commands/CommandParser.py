@@ -11,62 +11,56 @@ from .CommandTranslateUnitsOfGoodWorth import CommandTranslateUnitsOfGoodWorth
 
 
 class CommandParser:
-
-    _COMMAND_SET_INTERGALACTIC_DIGIT_TO_ROMAN_DIGIT_TRANSLATION = 0
-    _COMMAND_SET_UNITS_OF_GOOD_WORTH = 1
-    _COMMAND_TRANSLATE_FROM_INTERGALACTIC_NUMERAL = 2
-    _COMMAND_TRANSLATE_UNITS_OF_GOOD_WORTH = 3
-    _availableCommands = {
-        _COMMAND_SET_INTERGALACTIC_DIGIT_TO_ROMAN_DIGIT_TRANSLATION: "^(\S*) means (\S*)$",
-        _COMMAND_SET_UNITS_OF_GOOD_WORTH: "^(.*) units of (\S*) are worth (\S*) credits$",
-        _COMMAND_TRANSLATE_FROM_INTERGALACTIC_NUMERAL: "^how much is (.*) \\?$",
-        _COMMAND_TRANSLATE_UNITS_OF_GOOD_WORTH: "^how many credits is (.*) (\S*) \\?$",
-    }
-
     def __init__(self):
-        pass
+        self._availableCommands = {
+            "^(\S*) means (\S*)$": self._buildCommandSetIntergalacticDigitToRomanDigitTranslation,
+            "^(.*) units of (\S*) are worth (\S*) credits$": self._buildCommandSetUnitsOfGoodsWorth,
+            "^how much is (.*) \\?$": self._buildCommandTranslateFromIntergalacticNumeral,
+            "^how many credits is (.*) (\S*) \\?$": self._buildCommandTranslateUnitsOfGoodWorth,
+        }
 
     def parseCommand(self, text):
         text = text.lower().strip()
 
-        requestedCommand = None
-        for commandId, commandLine in self._availableCommands.items():
-            match = re.search(commandLine, text)
+        for expectedCommandLine, commandBuilder in self._availableCommands.items():
+            match = re.search(expectedCommandLine, text)
             if match:
-                requestedCommand = commandId
-                break
+                command = commandBuilder(match)
+                return command
 
-        if (
-            requestedCommand
-            == self._COMMAND_SET_INTERGALACTIC_DIGIT_TO_ROMAN_DIGIT_TRANSLATION
-        ):
-            intergalacticDigit = match.group(1)
-            romanDigit = match.group(2)
+        raise CommandParserError("unknown command: {}".format(text))
 
-            command = CommandSetIntergalacticDigitToRomanDigitTranslation(
-                intergalacticDigit, romanDigit
-            )
-        elif requestedCommand == self._COMMAND_SET_UNITS_OF_GOOD_WORTH:
-            intergalacticUnits = match.group(1).split(" ")
-            goodName = match.group(2)
-            try:
-                goodWorth = int(match.group(3))
-            except Exception as e:
-                raise CommandParserError(str(e))
+    def _buildCommandSetIntergalacticDigitToRomanDigitTranslation(self, match):
+        intergalacticDigit = match.group(1)
+        romanDigit = match.group(2)
 
-            command = CommandSetUnitsOfGoodsWorth(
-                intergalacticUnits, goodName, goodWorth
-            )
-        elif requestedCommand == self._COMMAND_TRANSLATE_FROM_INTERGALACTIC_NUMERAL:
-            intergalacticUnits = match.group(1).split(" ")
-            command = CommandTranslateFromIntergalacticNumeral(intergalacticUnits)
-        elif requestedCommand == self._COMMAND_TRANSLATE_UNITS_OF_GOOD_WORTH:
-            intergalacticUnits = match.group(1).split(" ")
-            goodName = match.group(2)
-            command = CommandTranslateUnitsOfGoodWorth(intergalacticUnits, goodName)
-        else:
-            raise CommandParserError("unknown command: {}".format(text))
+        command = CommandSetIntergalacticDigitToRomanDigitTranslation(
+            intergalacticDigit, romanDigit
+        )
 
+        return command
+
+    def _buildCommandSetUnitsOfGoodsWorth(self, match):
+        intergalacticUnits = match.group(1).split(" ")
+        goodName = match.group(2)
+        try:
+            goodWorth = int(match.group(3))
+        except Exception as e:
+            raise CommandParserError(str(e))
+
+        command = CommandSetUnitsOfGoodsWorth(intergalacticUnits, goodName, goodWorth)
+
+        return command
+
+    def _buildCommandTranslateFromIntergalacticNumeral(self, match):
+        intergalacticUnits = match.group(1).split(" ")
+        command = CommandTranslateFromIntergalacticNumeral(intergalacticUnits)
+        return command
+
+    def _buildCommandTranslateUnitsOfGoodWorth(self, match):
+        intergalacticUnits = match.group(1).split(" ")
+        goodName = match.group(2)
+        command = CommandTranslateUnitsOfGoodWorth(intergalacticUnits, goodName)
         return command
 
 
