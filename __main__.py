@@ -1,14 +1,11 @@
 import sys
-from os.path import dirname, abspath
 
-sys.path.append(dirname(dirname(abspath(__file__))))
-
-from MerchantsGuideToGalaxy import MerchantsGuideToGalaxy
+import merchantsguidetogalaxy
 
 
 class App:
     def __init__(self):
-        self._merchantsGuideToGalaxy = MerchantsGuideToGalaxy()
+        self._merchantsGuideToGalaxy = merchantsguidetogalaxy.MerchantsGuideToGalaxy()
 
     def runFromFile(self, fileName):
         with open(fileName) as fp:
