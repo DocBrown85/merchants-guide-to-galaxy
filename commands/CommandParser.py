@@ -27,7 +27,7 @@ class CommandParser:
         pass
 
     def parseCommand(self, text):
-        text = text.lower()
+        text = text.lower().strip()
 
         requestedCommand = None
         for commandId, commandLine in self._availableCommands.items():
