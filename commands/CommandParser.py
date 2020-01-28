@@ -18,15 +18,16 @@ class CommandParser:
     _COMMAND_TRANSLATE_UNITS_OF_GOOD_WORTH = 3
     _availableCommands = {
         _COMMAND_SET_INTERGALACTIC_DIGIT_TO_ROMAN_DIGIT_TRANSLATION: "^(\S*) means (\S*)$",
-        _COMMAND_SET_UNITS_OF_GOOD_WORTH: "^(.*) units of (\S*) are worth (\S*) Credits$",
+        _COMMAND_SET_UNITS_OF_GOOD_WORTH: "^(.*) units of (\S*) are worth (\S*) credits$",
         _COMMAND_TRANSLATE_FROM_INTERGALACTIC_NUMERAL: "^how much is (.*) \\?$",
-        _COMMAND_TRANSLATE_UNITS_OF_GOOD_WORTH: "^how many Credits is (.*) (\S*) \\?$",
+        _COMMAND_TRANSLATE_UNITS_OF_GOOD_WORTH: "^how many credits is (.*) (\S*) \\?$",
     }
 
     def __init__(self):
         pass
 
     def parseCommand(self, text):
+        text = text.lower()
 
         requestedCommand = None
         for commandId, commandLine in self._availableCommands.items():

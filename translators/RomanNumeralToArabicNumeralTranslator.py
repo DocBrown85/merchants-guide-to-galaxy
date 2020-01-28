@@ -13,7 +13,7 @@ class RomanNumeralToArabicNumeralTranslator:
         pass
 
     def translate(self, romanNumeral):
-        romanNumeral.upper()
+        romanNumeral = romanNumeral.upper()
 
         arabicNumeral = 0
         for i in range(len(romanNumeral)):
