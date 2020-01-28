@@ -76,4 +76,15 @@ I have no idea what you are talking about
 
 ### Running the code:
 
-The Trade.java file has the main method to run the program. The inputFile is the file with a list of inputs for the program.
+You can run the application live from the command line with:
+```
+python3 __main__.py
+```
+or from a file with:
+```
+python3 __main__.py input.txt
+```
+to run tests use:
+```
+python3 -m unittest discover -v
+```
