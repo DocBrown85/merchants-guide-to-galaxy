@@ -1,29 +1,42 @@
+import sys
+from os.path import dirname, abspath
+
+sys.path.append(dirname(dirname(abspath(__file__))))
+
 from MerchantsGuideToGalaxy import MerchantsGuideToGalaxy
 
 
+class App:
+    def __init__(self):
+        self._merchantsGuideToGalaxy = MerchantsGuideToGalaxy()
+
+    def runFromFile(self, fileName):
+        with open(fileName) as fp:
+            lines = fp.readlines()
+            for line in lines:
+                self._runMerchantsGuideToGalaxy(line)
+
+    def runLive(self):
+        print("running live, type <quit> to exit.\n")
+        while True:
+            userInput = input()
+            if userInput == "quit":
+                break
+            self._runMerchantsGuideToGalaxy(userInput)
+
+    def _runMerchantsGuideToGalaxy(self, userInput):
+        response = self._merchantsGuideToGalaxy.getHelp(userInput)
+        if response:
+            print(response)
+
+
 def main():
-    import sys
-    from os.path import dirname, abspath
+    app = App()
 
-    sys.path.append(dirname(dirname(abspath(__file__))))
-
-    merchantsGuideToGalaxy = MerchantsGuideToGalaxy()
-    merchantsGuideToGalaxy.getHelp("glob means I")
-    merchantsGuideToGalaxy.getHelp("prok means V")
-    merchantsGuideToGalaxy.getHelp("pish means X")
-    merchantsGuideToGalaxy.getHelp("tegj means L")
-    merchantsGuideToGalaxy.getHelp("glob glob units of Silver are worth 34 Credits")
-    merchantsGuideToGalaxy.getHelp("glob prok units of Gold are worth 57800 Credits")
-    merchantsGuideToGalaxy.getHelp("pish pish units of Iron are worth 3910 Credits")
-    print(merchantsGuideToGalaxy.getHelp("how much is pish tegj glob glob ?"))
-    print(merchantsGuideToGalaxy.getHelp("how many Credits is glob prok Silver ?"))
-    print(merchantsGuideToGalaxy.getHelp("how many Credits is glob prok Gold ?"))
-    print(merchantsGuideToGalaxy.getHelp("how many Credits is glob prok Iron ?"))
-    print(
-        merchantsGuideToGalaxy.getHelp(
-            "how much wood could a woodchuck chuck if a woodchuck could chuck wood ?"
-        )
-    )
+    if len(sys.argv) == 2:
+        app.runFromFile(sys.argv[1])
+    else:
+        app.runLive()
 
 
 if __name__ == "__main__":
