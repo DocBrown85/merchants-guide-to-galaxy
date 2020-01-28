@@ -1,1 +1,1 @@
-from .CommandParser import CommandParser
+from .CommandParser import CommandParser, CommandParserError

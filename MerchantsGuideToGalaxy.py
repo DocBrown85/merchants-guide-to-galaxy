@@ -12,8 +12,9 @@ class MerchantsGuideToGalaxy:
         try:
             command = self._commandParser.parseCommand(request)
             response = command.execute()
-        except Exception as e:
-            # traceback.print_exc(file=sys.stderr)
+        except commands.CommandParserError as e:
             response = "I have no idea what you are talking about"
+        except Exception as e:
+            traceback.print_exc(file=sys.stderr)
 
         return response
