@@ -18,11 +18,11 @@ class CommandSetUnitsOfGoodsWorth(ICommand):
             self._intergalacticUnits
         )
 
-        romanNumeralToArabicNumeralTranslator = (
-            translators.RomanNumeralToArabicNumeralTranslator()
+        romanNumeralArabicNumeralTranslator = (
+            translators.RomanNumeralArabicNumeralTranslator()
         )
 
-        arabicNumeral = romanNumeralToArabicNumeralTranslator.translate(
+        arabicNumeral = romanNumeralArabicNumeralTranslator.getArabicNumeralFromRomanNumeral(
             "".join(romanDigits)
         )
 

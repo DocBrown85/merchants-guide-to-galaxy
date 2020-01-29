@@ -6,4 +6,4 @@ from .UnitsOfGoodWorthTranslator import (
     UnitsOfGoodWorthTranslator,
     UnitsOfGoodWorthTranslatorError,
 )
-from .RomanNumeralToArabicNumeralTranslator import RomanNumeralToArabicNumeralTranslator
+from .RomanNumeralArabicNumeralTranslator import RomanNumeralArabicNumeralTranslator
