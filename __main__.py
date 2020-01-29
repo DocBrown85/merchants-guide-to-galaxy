@@ -1,3 +1,4 @@
+from os import path
 import sys
 
 import merchantsguidetogalaxy
@@ -8,6 +9,10 @@ class App:
         self._merchantsGuideToGalaxy = merchantsguidetogalaxy.MerchantsGuideToGalaxy()
 
     def runFromFile(self, fileName):
+        if not path.exists(fileName):
+            print("cannot find input file: {}".format(fileName))
+            return
+
         with open(fileName) as fp:
             lines = fp.readlines()
             for line in lines:
