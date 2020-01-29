@@ -36,9 +36,9 @@ def main():
     merchantsGuideToGalaxyApp = MerchantsGuideToGalaxyApp()
 
     if len(sys.argv) == 2:
-        app.runFromFile(sys.argv[1])
+        merchantsGuideToGalaxyApp.runFromFile(sys.argv[1])
     else:
-        app.runLive()
+        merchantsGuideToGalaxyApp.runLive()
 
 
 if __name__ == "__main__":
