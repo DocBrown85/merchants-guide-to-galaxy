@@ -4,7 +4,7 @@ import sys
 import merchantsguidetogalaxy
 
 
-class App:
+class MerchantsGuideToGalaxyApp:
     def __init__(self):
         self._merchantsGuideToGalaxy = merchantsguidetogalaxy.MerchantsGuideToGalaxy()
 
@@ -33,7 +33,7 @@ class App:
 
 
 def main():
-    app = App()
+    merchantsGuideToGalaxyApp = MerchantsGuideToGalaxyApp()
 
     if len(sys.argv) == 2:
         app.runFromFile(sys.argv[1])

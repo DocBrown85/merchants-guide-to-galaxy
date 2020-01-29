@@ -78,11 +78,11 @@ I have no idea what you are talking about
 
 You can run the application live from the command line with:
 ```
-python3 __main__.py
+python3 main.py
 ```
 or from a file with:
 ```
-python3 __main__.py input.txt
+python3 main.py input.txt
 ```
 to run tests use:
 ```
