@@ -1,5 +1,7 @@
 import re
 
+from .ICommandParser import ICommandParser, ICommandParserError
+
 from .CommandSetIntergalacticDigitToRomanDigitTranslation import (
     CommandSetIntergalacticDigitToRomanDigitTranslation,
 )
@@ -10,7 +12,7 @@ from .CommandTranslateFromIntergalacticNumeral import (
 from .CommandTranslateUnitsOfGoodWorth import CommandTranslateUnitsOfGoodWorth
 
 
-class CommandParser:
+class StringCommandParser(ICommandParser):
     def __init__(self):
         self._availableCommands = {
             "^(\S*) means (\S*)$": self._buildCommandSetIntergalacticDigitToRomanDigitTranslation,
@@ -28,7 +30,7 @@ class CommandParser:
                 command = commandBuilder(match)
                 return command
 
-        raise CommandParserError("unknown command: {}".format(text))
+        raise StringCommandParserError("unknown command: {}".format(text))
 
     def _buildCommandSetIntergalacticDigitToRomanDigitTranslation(self, match):
         intergalacticDigit = match.group(1)
@@ -46,7 +48,7 @@ class CommandParser:
         try:
             goodWorth = int(match.group(3))
         except Exception as e:
-            raise CommandParserError(str(e))
+            raise StringCommandParserError(str(e))
 
         command = CommandSetUnitsOfGoodsWorth(intergalacticUnits, goodName, goodWorth)
 
@@ -64,5 +66,5 @@ class CommandParser:
         return command
 
 
-class CommandParserError(Exception):
+class StringCommandParserError(ICommandParserError):
     pass
