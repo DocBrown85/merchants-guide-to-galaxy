@@ -16,5 +16,5 @@ class ICommandResponse:
     def __init__(self):
         pass
 
-    def format(self):
+    def format(self, responseFormat):
         return self._response

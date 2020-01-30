@@ -31,14 +31,8 @@ class CommandTranslateUnitsOfGoodWorth(ICommand):
             self._goodName, arabicNumeral
         )
 
-        response = "{} {} is {:0.0f} Credits".format(
-            " ".join(self._intergalacticUnits),
-            self._goodName.capitalize(),
-            translatedGoodWorth,
-        )
-
         return TranslateUnitsOfGoodWorthCommandResponse(
-            self._intergalacticUnits, self._goodName, response
+            self._intergalacticUnits, self._goodName, translatedGoodWorth
         )
 
 
@@ -47,3 +41,19 @@ class TranslateUnitsOfGoodWorthCommandResponse(ICommandResponse):
         self._argIntergalacticUnits = argIntergalacticUnits
         self._argGoodName = argGoodName
         self._response = response
+
+    def format(self, responseFormat):
+        formattedResponse = None
+        if responseFormat == "default":
+            formattedResponse = self._formatString()
+        else:
+            raise Exception("unknown format type: {}".format(responseFormat))
+        return formattedResponse
+
+    def _formatString(self):
+        formattedResponse = "{} {} is {:0.0f} Credits".format(
+            " ".join(self._argIntergalacticUnits),
+            self._argGoodName.capitalize(),
+            self._response,
+        )
+        return formattedResponse
