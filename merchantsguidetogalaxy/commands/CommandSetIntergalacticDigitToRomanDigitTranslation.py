@@ -1,4 +1,4 @@
-from .ICommand import ICommand
+from .ICommand import ICommand, ICommandResponse
 
 from .. import translators
 
@@ -16,3 +16,14 @@ class CommandSetIntergalacticDigitToRomanDigitTranslation(ICommand):
         intergalacticDigitToRomanDigitTranslator.setIntergalacticDigitToRomanDigitTranslation(
             self._intergalacticDigit, self._romanDigit
         )
+
+        return SetIntergalacticDigitToRomanDigitTranslationCommandResponse(
+            self._intergalacticDigit, self._romanDigit, None
+        )
+
+
+class SetIntergalacticDigitToRomanDigitTranslationCommandResponse(ICommandResponse):
+    def __init__(self, argIntergalacticDigit, argRomanDigit, response):
+        self._argIntergalacticDigit = argIntergalacticDigit
+        self._argRomanDigit = argRomanDigit
+        self._response = response

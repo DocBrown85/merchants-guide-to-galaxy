@@ -12,7 +12,8 @@ class MerchantsGuideToGalaxy:
         response = None
         try:
             command = self._commandParser.parseCommand(request)
-            response = command.execute()
+            commandResponse = command.execute()
+            response = commandResponse.format()
         except commandparsers.ICommandParserError as e:
             response = "I have no idea what you are talking about"
         except Exception as e:

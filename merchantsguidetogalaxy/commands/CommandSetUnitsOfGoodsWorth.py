@@ -1,4 +1,4 @@
-from .ICommand import ICommand
+from .ICommand import ICommand, ICommandResponse
 
 from .. import translators
 
@@ -31,3 +31,15 @@ class CommandSetUnitsOfGoodsWorth(ICommand):
         unitsOfGoodWorthTranslator.setUnitsOfGoodWorth(
             self._goodName, arabicNumeral, self._goodWorth
         )
+
+        return SetUnitsOfGoodsWorthCommandResponse(
+            self._intergalacticUnits, self._goodName, self._goodWorth, None
+        )
+
+
+class SetUnitsOfGoodsWorthCommandResponse(ICommandResponse):
+    def __init__(self, argIntergalacticUnits, argGoodName, argGoodWorth, response):
+        self._argIntergalacticUnits = argIntergalacticUnits
+        self._argGoodName = argGoodName
+        self._argGoodWorth = argGoodWorth
+        self._response = response

@@ -8,3 +8,13 @@ class ICommand(ABC):
     @abstractmethod
     def execute(self):
         pass
+
+
+class ICommandResponse:
+    _response = None
+
+    def __init__(self):
+        pass
+
+    def format(self):
+        return self._response

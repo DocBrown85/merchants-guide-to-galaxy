@@ -1,4 +1,4 @@
-from .ICommand import ICommand
+from .ICommand import ICommand, ICommandResponse
 
 from .. import translators
 
@@ -26,4 +26,12 @@ class CommandTranslateFromIntergalacticNumeral(ICommand):
 
         response = "{} is {}".format(" ".join(self._intergalacticUnits), arabicNumeral)
 
-        return response
+        return TranslateFromIntergalacticNumeralCommandResponse(
+            self._intergalacticUnits, response
+        )
+
+
+class TranslateFromIntergalacticNumeralCommandResponse(ICommandResponse):
+    def __init__(self, argIntergalacticUnits, response):
+        self._argIntergalacticUnits = argIntergalacticUnits
+        self._response = response
