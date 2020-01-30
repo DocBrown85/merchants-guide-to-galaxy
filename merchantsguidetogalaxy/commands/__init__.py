@@ -1,8 +1,9 @@
-from .CommandParserFactory import CommandParserFactory
-from .ICommandParser import ICommandParser, ICommandParserError
-
-_commandParserFactory = CommandParserFactory()
-
-
-def getCommandParser(type):
-    return _commandParserFactory.getCommandParser(type)
+from .ICommand import ICommand
+from .CommandSetIntergalacticDigitToRomanDigitTranslation import (
+    CommandSetIntergalacticDigitToRomanDigitTranslation,
+)
+from .CommandSetUnitsOfGoodsWorth import CommandSetUnitsOfGoodsWorth
+from .CommandTranslateFromIntergalacticNumeral import (
+    CommandTranslateFromIntergalacticNumeral,
+)
+from .CommandTranslateUnitsOfGoodWorth import CommandTranslateUnitsOfGoodWorth

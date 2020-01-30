@@ -2,14 +2,7 @@ import re
 
 from .ICommandParser import ICommandParser, ICommandParserError
 
-from .CommandSetIntergalacticDigitToRomanDigitTranslation import (
-    CommandSetIntergalacticDigitToRomanDigitTranslation,
-)
-from .CommandSetUnitsOfGoodsWorth import CommandSetUnitsOfGoodsWorth
-from .CommandTranslateFromIntergalacticNumeral import (
-    CommandTranslateFromIntergalacticNumeral,
-)
-from .CommandTranslateUnitsOfGoodWorth import CommandTranslateUnitsOfGoodWorth
+from .. import commands
 
 
 class StringCommandParser(ICommandParser):
@@ -36,7 +29,7 @@ class StringCommandParser(ICommandParser):
         intergalacticDigit = match.group(1)
         romanDigit = match.group(2)
 
-        command = CommandSetIntergalacticDigitToRomanDigitTranslation(
+        command = commands.CommandSetIntergalacticDigitToRomanDigitTranslation(
             intergalacticDigit, romanDigit
         )
 
@@ -50,19 +43,23 @@ class StringCommandParser(ICommandParser):
         except Exception as e:
             raise StringCommandParserError(str(e))
 
-        command = CommandSetUnitsOfGoodsWorth(intergalacticUnits, goodName, goodWorth)
+        command = commands.CommandSetUnitsOfGoodsWorth(
+            intergalacticUnits, goodName, goodWorth
+        )
 
         return command
 
     def _buildCommandTranslateFromIntergalacticNumeral(self, match):
         intergalacticUnits = match.group(1).split(" ")
-        command = CommandTranslateFromIntergalacticNumeral(intergalacticUnits)
+        command = commands.CommandTranslateFromIntergalacticNumeral(intergalacticUnits)
         return command
 
     def _buildCommandTranslateUnitsOfGoodWorth(self, match):
         intergalacticUnits = match.group(1).split(" ")
         goodName = match.group(2)
-        command = CommandTranslateUnitsOfGoodWorth(intergalacticUnits, goodName)
+        command = commands.CommandTranslateUnitsOfGoodWorth(
+            intergalacticUnits, goodName
+        )
         return command
 
 
