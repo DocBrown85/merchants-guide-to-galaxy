@@ -3,15 +3,16 @@ from .StringCommandParser import StringCommandParser, StringCommandParserError
 
 class CommandParserFactory:
     def __init__(self):
-        pass
+        self._commandParsersRegistry = {"default": StringCommandParser}
 
     def getCommandParser(self, type):
-        if type == "default":
-            return StringCommandParser()
-        else:
+        if not type in self._commandParsersRegistry:
             raise CommandParserFactoryError(
                 "unknown command parser type: {}".format(type)
             )
+
+        commandParser = self._commandParsersRegistry[type]()
+        return commandParser
 
 
 class CommandParserFactoryError(Exception):
