@@ -23,7 +23,7 @@ from .TranslateUnitsOfGoodWorthCommandResponseStringFormatter import (
 )
 
 
-class CommandResponseStringFormatterFactory:
+class CommandResponseStringFormatter:
     def __init__(self):
         self._commandResponseStringFormattersRegistry = {
             SetIntergalacticDigitToRomanDigitTranslationCommandResponse: SetIntergalacticDigitToRomanDigitTranslationCommandResponseStringFormatter,
@@ -43,10 +43,10 @@ class CommandResponseStringFormatterFactory:
                 ]()
                 return formatter.format(commandResponse)
 
-        raise CommandResponseStringFormatterFactoryError(
+        raise CommandResponseStringFormatterError(
             "unknown command response: {}".format(str(commandResponse))
         )
 
 
-class CommandResponseStringFormatterFactoryError(Exception):
+class CommandResponseStringFormatterError(Exception):
     pass

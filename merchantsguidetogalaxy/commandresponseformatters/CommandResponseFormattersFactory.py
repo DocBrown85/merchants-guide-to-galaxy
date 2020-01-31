@@ -1,10 +1,10 @@
-from .CommandResponseStringFormatterFactory import CommandResponseStringFormatterFactory
+from .CommandResponseStringFormatter import CommandResponseStringFormatter
 
 
 class CommandResponseFormattersFactory:
     def __init__(self):
         self._commandResponseFormattersRegistry = {
-            "default": CommandResponseStringFormatterFactory
+            "default": CommandResponseStringFormatter
         }
 
     def getCommandResponseFormatter(self, responseFormatType):
