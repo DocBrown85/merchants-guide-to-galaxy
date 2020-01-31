@@ -7,8 +7,6 @@ from . import commandresponseformatters
 
 class MerchantsGuideToGalaxy:
     def __init__(self, commandParserType="default", responseFormatType="default"):
-        self._commandParserType = commandParserType
-        self._responseFormatType = responseFormatType
         self._commandParser = commandparsers.getCommandParser(commandParserType)
         self._commandResponseFormatter = commandresponseformatters.getCommandResponseFormatter(
             responseFormatType
