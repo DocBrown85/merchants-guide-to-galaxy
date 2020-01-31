@@ -27,7 +27,7 @@ class MerchantsGuideToGalaxyApp:
             self._runMerchantsGuideToGalaxy(userInput)
 
     def _runMerchantsGuideToGalaxy(self, userInput):
-        response = self._merchantsGuideToGalaxy.getHelp(userInput)
+        response = self._merchantsGuideToGalaxy.help(userInput)
         if response:
             print(response)
 

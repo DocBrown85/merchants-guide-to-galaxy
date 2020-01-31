@@ -14,7 +14,7 @@ class MerchantsGuideToGalaxy:
             responseFormatType
         )
 
-    def getHelp(self, request):
+    def help(self, request):
         response = None
         try:
             command = self._commandParser.parseCommand(request)

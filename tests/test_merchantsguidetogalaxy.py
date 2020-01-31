@@ -17,37 +17,37 @@ class TestMerchantsGuideToGalaxy(unittest.TestCase):
         ]
 
         for command in initialisationCommands:
-            self._merchantsGuideToGalaxy.getHelp(command)
+            self._merchantsGuideToGalaxy.help(command)
 
     def tearDown(self):
         pass
 
     def test_translateIntergalacticNumeralToArabicNumeral(self):
-        response = self._merchantsGuideToGalaxy.getHelp(
+        response = self._merchantsGuideToGalaxy.help(
             "how much is pish tegj glob glob ?"
         )
         self.assertTrue(response == "pish tegj glob glob is 42")
 
     def test_translateUnitsOfGoodWorthGold(self):
-        response = self._merchantsGuideToGalaxy.getHelp(
+        response = self._merchantsGuideToGalaxy.help(
             "how many Credits is glob prok Gold ?"
         )
         self.assertTrue(response == "glob prok Gold is 57800 Credits")
 
     def test_translateUnitsOfGoodWorthIron(self):
-        response = self._merchantsGuideToGalaxy.getHelp(
+        response = self._merchantsGuideToGalaxy.help(
             "how many Credits is glob prok Iron ?"
         )
         self.assertTrue(response == "glob prok Iron is 782 Credits")
 
     def test_translateUnitsOfGoodWorthSilver(self):
-        response = self._merchantsGuideToGalaxy.getHelp(
+        response = self._merchantsGuideToGalaxy.help(
             "how many Credits is glob prok Silver ?"
         )
         self.assertTrue(response == "glob prok Silver is 68 Credits")
 
     def test_unknownCommand(self):
-        response = self._merchantsGuideToGalaxy.getHelp(
+        response = self._merchantsGuideToGalaxy.help(
             "how much wood could a woodchuck chuck if a woodchuck could chuck wood ?"
         )
         self.assertTrue(response == "I have no idea what you are talking about")
