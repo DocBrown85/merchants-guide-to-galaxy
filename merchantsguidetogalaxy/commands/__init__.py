@@ -1,4 +1,4 @@
-from .ICommand import ICommand
+from .ICommand import ICommand, ICommandResponse
 from .CommandSetIntergalacticDigitToRomanDigitTranslation import (
     CommandSetIntergalacticDigitToRomanDigitTranslation,
 )
