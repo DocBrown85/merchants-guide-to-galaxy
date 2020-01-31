@@ -34,12 +34,12 @@ class CommandResponseStringFormatter:
 
     def format(self, commandResponse):
         for (
-            supportedCommandResponseTypes,
+            supportedCommandResponseType,
             commandResponseStringFormatter,
         ) in self._commandResponseStringFormattersRegistry.items():
-            if isinstance(commandResponse, supportedCommandResponseTypes):
+            if isinstance(commandResponse, supportedCommandResponseType):
                 formatter = self._commandResponseStringFormattersRegistry[
-                    supportedCommandResponseTypes
+                    supportedCommandResponseType
                 ]()
                 return formatter.format(commandResponse)
 
