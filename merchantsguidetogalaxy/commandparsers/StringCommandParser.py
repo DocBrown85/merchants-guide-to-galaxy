@@ -15,7 +15,7 @@ class StringCommandParser(ICommandParser):
         }
 
     def parseCommand(self, text):
-        text = text.lower().strip()
+        text = self._normaliseText(text)
 
         for expectedCommandLine, commandBuilder in self._availableCommands.items():
             match = re.search(expectedCommandLine, text)
@@ -24,6 +24,12 @@ class StringCommandParser(ICommandParser):
                 return command
 
         raise StringCommandParserError("unknown command: {}".format(text))
+
+    def _normaliseText(self, text):
+        text = text.lower()
+        text = text.strip()
+        text = re.sub("\s+", " ", text)
+        return text
 
     def _buildCommandSetIntergalacticDigitToRomanDigitTranslation(self, match):
         intergalacticDigit = match.group(1)
