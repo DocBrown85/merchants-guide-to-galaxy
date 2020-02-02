@@ -28,6 +28,20 @@ class TestMerchantsGuideToGalaxyWithWhitespaces(unittest.TestCase):
         )
         self.assertTrue(response == "pish tegj glob glob is 42")
 
+    def test_translateIntergalacticNumeralToArabicNumeralWithNoWhitespacesBeforeQuestionMark(
+        self
+    ):
+        response = self._merchantsGuideToGalaxy.help(
+            "  how   much     is   pish   tegj   glob glob?"
+        )
+        self.assertTrue(response == "pish tegj glob glob is 42")
+
+    def test_translateUnitsOfGoodWorthGoldWithNoWhitespacesBeforeQuestionMark(self):
+        response = self._merchantsGuideToGalaxy.help(
+            "  how   many     Credits   is    glob  prok    Gold?"
+        )
+        self.assertTrue(response == "glob prok Gold is 57800 Credits")
+
     def test_translateUnitsOfGoodWorthGoldWithWhitespaces(self):
         response = self._merchantsGuideToGalaxy.help(
             "  how   many     Credits   is    glob  prok    Gold ?"
