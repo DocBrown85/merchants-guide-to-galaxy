@@ -28,6 +28,7 @@ class StringCommandParser(ICommandParser):
     def _normaliseText(self, text):
         text = text.lower()
         text = text.strip()
+        text = re.sub("\\?", " ?", text)
         text = re.sub("\s+", " ", text)
         return text
 
