@@ -76,6 +76,11 @@ I have no idea what you are talking about
 
 ### Running the code:
 
+The code has been built with:
+
+* Linux 4.15.0-74-generic, 16.04.1-Ubuntu x86_64 x86_64 x86_64 GNU/Linux
+* Python 3.5.2
+
 You can run the application live from the command line with:
 ```
 python3 main.py
